@@ -1,0 +1,565 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Automated Management</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="134590f3-157b-4d70-8bb2-585179bf3d0a" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">👔</span></div><h1 class="page-title">Automated Management</h1></header><div class="page-body"><h2 id="bc3ed6a4-ba4a-478d-bee1-56e4a6b6fcd3" class="">People and Project Management</h2><p id="296c9ebe-ce14-4503-afcb-d216b028f9a0" class="">High tech firms are focusing more on smaller teams of more technically skilled, capable generalists with high levels of initiative and resilience. This is in contrast to the factory-like model of large organisations with moderately skilled employees managed in a process-heavy manner. Firms such as Intel and Sony have managed to maintain their creativity at scale by creating an internal &#x27;ecosystem of startups&#x27;. It is likely that even large, traditional firms will focus more on entrepreneurial, startup style working in order to remain competitive, particularly as AI begins to automate more and more routine white collar work. </p><p id="8d8fa030-1ef4-4bfe-b2fb-2a562933ec03" class="">Similarly, top firms are increasingly asking &#x27;Show us what you have made&#x27; rather than simply relying on institutional qualifications. This is in part because such qualifications may not be a good predictor of the initiative and resilience needed to create new products. These skills are also important because of the need for employees to rapidly adapt to new technologies, something that larger firms are traditionally bad at.</p><p id="e5212d3d-50a9-446a-8370-6833d33b6f43" class="">The projects in this area are focused on developing software and process tools to help scientifically measure, train and manage people. They are similar to data analysis projects however they have a much greater emphasis on psychology and business research. They are also focused on the development of data gathering technology as there are limited data sets or experimentally derived insights to these problems. Google&#x27;s re:Work group (<a href="https://rework.withgoogle.com/">https://rework.withgoogle.com/</a>) and Ray Dalios&#x27; management approach at Bridgewater (<a href="https://www.principles.com/">https://www.principles.com/</a>) are rare exceptions.</p><p id="b0a57ff8-4451-4f0b-bf3c-936ee9bddb56" class="">A common trend in the organisation of startups is the use of light weight, lean management techniques that focus more on tracking and evaluating outcomes than defining processes. They are designed to ensure flexibility and speed in how work is done while accurately understanding the real value of outputs. They also focus heavily on the prioritisation of tasks and the need to identify if a (possibly radical) pivot is required when plans are not producing real results.</p><p id="e9941137-9aa5-40cc-a63d-ddf45cc78291" class="">There are numerous companies that provide software to assist with management, and many firms have internal teams for this purpose. Any project in this area will include a detailed evaluation of what software already exists and a rational assessment of its effectiveness, where possible, through case study interviews with users and measurement of outcomes. All of these projects will require some form of user testing to validate that they are effective.</p><h3 id="015bfa19-43e4-44bc-bfc8-e81b1d2cf519" class="">A. Personality and self learning skill assessment and training</h3><p id="5eb2016f-8c3f-4f84-9d9f-2683109098a2" class="">i) Techniques to measure to what extent individuals can: <div class="indented"><p id="506852e5-6936-410b-bd41-2476a06452a6" class="">Work productively without coercive supervision</p><p id="17744720-69b5-4ae3-bae9-12e4c692c02c" class="">Teach themselves what they need to know </p><p id="9868b571-2b02-4476-be1b-586328488c01" class="">Solve unfamiliar problems</p><p id="bf3c5bfc-9e0f-400e-acb1-c697460ebd15" class="">Predict the likely results of their work over different time periods </p><p id="776462e0-9dc3-4a84-ba2a-205d2aaad9d8" class="">Design or adapt projects/plans so that they create real value for others  </p></div></p><p id="b4659219-0f4c-4782-9f5a-82d5bf86ead2" class="">Software tools to automatically assess and track skills in each of these areas</p><p id="3603751a-e51d-4733-9ba7-774af444ba1f" class="">ii) Gathering case studies of individuals who have &#x27;turned their lives around&#x27; and significantly improved in one or all areas and identifying possible interventions relating to these case studies. The creation of software tools to make this easier.</p><p id="7e00fff7-9860-4510-b30e-a5eca9ccb44e" class="">iii) Creating a taxonomy of teaching or management interventions that could develop skills in each of these areas. Software tools to assist with scientifically evaluating the impact of such teaching or management interventions on individual capability</p><h3 id="1bad3f19-db8e-4589-9021-8c05d6257167" class="">B. Energy and Focus Development</h3><p id="40743191-596b-4890-b238-62235ab95115" class="">i) Creating a taxonomy of outputs or behaviours that are clear demonstrations of energy and focus or the lack of the same. Creating a taxonomy of personalities and working practices and measuring their correlation with demonstrations of energy and focus. Developing software tools to assist with this process</p><p id="cd410fad-f20d-4d84-b55b-388e1dd190fb" class="">ii) Creating a taxonomy of interventions focused on improved energy and focus. Scientifically evaluating the impact of those interventions. Creating software based processes and tools to automatically track energy and focus related behaviours and interventions to rationally improve management and techniques for self development</p><h3 id="daa6112a-8018-446f-9653-9f2923f4cba5" class="">C. Motivation and Accountability</h3><p id="eeceaf39-b641-4f1c-a7bb-30f4e72eef44" class="">Creating software processes and tools to make it easier to motivate and manage individuals to get the best work from them. </p><p id="919b50a8-1995-45ff-b8a0-2304d800486e" class="">This includes: <div class="indented"><p id="ae072699-3dce-45bc-9e1b-bdfead32c510" class="">i) Measuring what motivates each person</p><p id="919bba36-d413-48ff-9d74-e9c7e732dff9" class="">ii) Lightweight, flexible tracking of work progress and completion</p><p id="6f8d9323-b2e3-4b9f-919e-6e2b293ae51c" class="">iii) Creating and measuring the impact of incentives and deterents</p></div></p><h3 id="94f99165-09ac-4dfe-bdb7-8db1eeff5b49" class="">D. Project ideation, prioritisation and delegation</h3><p id="1163140a-0c08-445c-9699-3c66fea87f94" class="">i) Creating a taxonomy of possible projects (e.g. different industries, technologies, types of people being helped, inspiration from existing products, inspiration from historical &#x27;breakthrough&#x27; products). Creating a taxonomy of possible project outcomes - From &#x27;breaks tools/destroys morale/creates a scandal&#x27; to &#x27;creates the next facebook/cures polio&#x27;. Creating a taxonomy of people that projects could help and how they could be helped. Creating software to assist with the categorisation (and improved taxonomy) of projects and their impact</p><p id="b3ee2760-69bc-4e55-af52-c4a789bf4acf" class="">ii) Software to assist with scientifically predicting the outcome of projects with associated individuals/teams - combining predictions from others weighted by their expertise to create &#x27;believability weighted decisions&#x27; regarding the outcomes of projects</p><p id="38428b23-9567-4022-8ffe-5f10573df07c" class="">iii) Software to as accurately as possible predict the likely success of a project through experiments. For example, by creating web pages for products and seeing if people order them.</p><h3 id="1fea705a-68e3-40fe-82ed-4467b8bd1c05" class="">E. Team formation and Issue resolution</h3><p id="9d04473d-5cfd-4402-8311-770a7e2c7b5d" class="">i) Creating a taxonomy of common positive and negative team behaviour. Creating software tools to predict and monitor such team behaviour and identifying possible enhancing/corrective actions</p><p id="4eab2158-98d8-4309-8127-518fbf8bfcbe" class="">ii) Using past case studies, individual personality assessments and believability weighted judgements to predict the likely behaviours of teams and the impact of actions upon them</p><h3 id="009caa3c-4e0a-41e4-b4c9-63e829c16c67" class="">F. Process creation and Project postmortems</h3><p id="bcf80524-1c06-45e6-8b96-13b181aa2cd1" class="">i) Software tools/processes to ensure that problems that arise during projects don&#x27;t recur </p><p id="748a1a5a-2e8e-4cd5-bd37-1c24468ed8e7" class="">ii) Software tools/processes to ensure projects are learnt from to improve predictions, prioritisation and real value to others</p><h2 id="0b6f339c-4190-44b4-be12-89acbe280ae4" class="">Crowdworking</h2><p id="ccee8812-60d7-4df0-a434-ce4e7e1f2aae" class="">Software engineering practices and software frameworks help to make a consistent process that can improve quality and enable lower skill staff to produce higher quality results. These can work well provided the problems being tackled are relatively routine. Artificial intelligence can be thought of as an extreme form of this process. By creating unambiguous formal metrics of success and defining the space of possible solutions, automated algorithms can search for the best approach. In some cases producing super-human results. Crowdworking can be thought of as sitting halfway between these two practices. Crowdworking platforms, such as Amazon’s mechanical turk, enable companies to provide small, relatively unskilled tasks to thousands of workers at relatively low cost. If a task can be broken down into small, well defined operations, similar to how they would be for an AI algorithm, then humans can collectively solve problems that the organisation might otherwise find prohibitively expensive in time or money.</p><p id="29b428c4-d0fa-4cfa-88db-fec90fe7d75b" class="">Crowdworking is most commonly used to create training data for AI algorithms and research, however it has the potential to do much more. Leading technology companies, such as Facebook and Google, make extensive use of metrics and data analysis to design and refine their products. In theory, with the correct process, an organisation or individual could use crowdworking services to create (and refine) new, high value products in a fraction of the time and money. In addition, similar to how AI algorithms are trained, a scientific approach could be used to rationally assess ability and motivation and to construct training practices and reward systems that had clear measurable benefits. This scientific approach to training and education could create a dramatic improvement in peoples’ capabilities.</p><p id="6a00cb64-e906-4876-a3b7-11b6fa553787" class="">A specific project in this topic is a combination of a step in the process e.g. A. Formalising existing approaches to creating products, and a type of product/service to be created e.g. i) Fashion/Style guide. Time permitting multiple steps can be completed to get closer to a complete crowdworking system for creating a product. However, at least one part of the project should be polished to high standard so that it has lasting value as a component that others can build on.</p><p id="90857a6b-e109-4e4a-9fcd-262bb9ed7241" class="">Because of its usefulness, crowdworking projects can be found in other challenge areas. However, crowdworking projects in this challenge area are focused on how to innovate and apply crowdworking approaches to new kinds of activity, beyond the simple tasks it has been traditionally applied to.</p><p id="5b12ab62-8bcf-4b00-bbba-603b86b13994" class="">Developing a crowdworking system for a new application includes the following steps:</p><ol id="653d3f1f-7170-42b0-87f1-4094ab6b72c1" class="numbered-list" start="1"><li>Formalising existing approaches to creating products/providing services</li></ol><ol id="12491e34-94af-422b-918d-89339952c98b" class="numbered-list" start="2"><li>Breaking down existing approaches into smaller crowdworkable tasks</li></ol><ol id="84347412-afe2-42e9-9ad8-471990be22c1" class="numbered-list" start="3"><li>Creating metrics for success (for the final product and for component parts)</li></ol><ol id="b2ff63a8-87dc-42d0-a584-d9d43810f97e" class="numbered-list" start="4"><li>Integrating and adapting parts to create a coherent final product/service</li></ol><ol id="20340d45-133f-4f78-8be5-339676a3adf0" class="numbered-list" start="5"><li>Gathering suggestions for improvement and refining the work of others</li></ol><ol id="bef60025-5367-4b8a-b10c-abd1cb352e96" class="numbered-list" start="6"><li>Adapting existing tools for use with crowdworking</li></ol><ol id="cffc2580-ae58-4ef4-8081-7c841b178802" class="numbered-list" start="7"><li>Predicting output before it is assigned (planning)</li></ol><ol id="f0b02a05-ca7a-481d-bd9b-0b3431ef39e6" class="numbered-list" start="8"><li>Assessing the ability of workers (quality of final product, rate of quality per unit of time)</li></ol><ol id="f2f99d48-c214-407b-9a98-22f45e978428" class="numbered-list" start="9"><li>Assessing enthusiasm (chance task will be chosen, amount of time will allocate, density of time allocated)</li></ol><ol id="b9a8fb7f-7577-46f8-9cf0-3d7a3e9d60c4" class="numbered-list" start="10"><li>Providing training/structure to increase ability/enthusiasm</li></ol><ol id="5dbe6302-aa0b-43aa-b8c9-423ffcc2c142" class="numbered-list" start="11"><li>Managing trust, data protection and privacy issues</li></ol><h3 id="e7d75780-3626-49fe-8f59-8a73e1f1196c" class="">Services</h3><p id="77e40dd9-96ef-47bc-bf35-17c211248e6f" class="">i) Fashion/Style guide</p><p id="bb944e75-6434-417a-a7bf-be67d64fff32" class="">ii) Gift buying advice</p><p id="e735192b-1cc4-4d8a-b76a-843fb5f47188" class="">iii) Health/fitness coach</p><p id="cc4cec09-d3b7-43f9-8823-bc9949cb3a87" class="">iv) Personal assistant/relationship manager (Keeps track of customers/friends/family lives and activities and helps maintain and build good relationships with them through thoughtful communications and planned activities)</p><p id="bda27388-a0a1-4bb9-9fa4-6b3571a46424" class="">v) Personal tutor for school/university/craft skills</p><p id="b0d91112-7af6-48d1-ae7f-653a8ab17a2e" class="">vi) Accountant/financial planner</p><p id="600f1c6a-881e-4f1e-b602-b73e4ed55691" class="">vii) Business Management - using crowdworking to manage the running of a business, recruitment of staff, performance review, delegating problems to staff</p><p id="3b8920a3-2b75-4b17-a4e5-360f62aa16b8" class="">viii) Host/DM for paper and pencil roleplaying game</p><h3 id="8c511ccc-2c70-46ca-a2e1-2b55287a8713" class="">Creative Products</h3><p id="aef8a5f9-1a41-4821-8606-b5485c7492ac" class="">ix) Developing a business plan</p><p id="9da44058-b0e1-4460-be03-2bf0d993ffb1" class="">x) Teaching materials (and assessment)</p><p id="6e73b5dc-3e10-4996-b16d-de1967992fff" class="">xi) Short stories (or long ones)</p><p id="03def123-14bf-48fc-98d2-71b4e32009fc" class="">xii) Interactive stories (Visual novels)</p><p id="db72c3f3-b9b7-407e-90a6-7af6d098a9d4" class="">xiii) Web design/Graphic design for static content</p><p id="4d9289f6-aa8e-47df-9194-51213bca3328" class="">xiv) Photorealistic 3D models of objects for games</p><p id="e6093e69-f035-4acb-a063-11c6cde0ae04" class="">xv) CAD design for manufacturable objects e.g. furniture</p><p id="b170a1fe-cb04-4663-8381-0e9af69d6f9d" class="">xvi) Crowdworking - using crowdworking to identify existing areas of work and adapting them so that they can be converted into crowdworking tasks</p></div></article></body></html>

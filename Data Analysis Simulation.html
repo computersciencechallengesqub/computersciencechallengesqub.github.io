@@ -1,0 +1,565 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Data Analysis &amp; Simulation</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e08d507d-2eac-4606-80f2-f94a58c19d55" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📈</span></div><h1 class="page-title">Data Analysis &amp; Simulation</h1></header><div class="page-body"><h2 id="d4979efd-92b1-4871-b987-5510e3daa804" class="">Data Analysis</h2><p id="9a13b810-1dca-4f35-8ed6-2acdc9d2442e" class="">In many ways, data analysis is similar to automated creativity. The main difference is that data analysis is focused more on understanding systems and predicting outcomes rather than creating novelty. For example, it is frequently used by businesses to understand how many products are likely to sell in the future. Analysis can also reveal where an organisations main costs are, as well as their main customers and their main uses of their products. This provides insight on how to improve. More generally, the goal of analysis is to understand the causal relationships in real world systems so that they can be altered in beneficial ways. While data analysis is pervasive in high technology firms, there are many areas of life where data analysis has not been applied in practical ways.</p><p id="542e00ee-1c6f-4f90-9579-1d91dabd80a6" class="">A specific project in this topic is a combination of a step in the process e.g. A. Gather data, and a field in which the process will be applied e.g. i) Economy, work and education. Time permitting multiple steps can be completed to get closer to a full analysis. However, at least one part of the project should be polished to high standard so that it has lasting value as a component that others can build on. A number of existing datasets are available for the proposed fields, however, you should expect to perform some degree of data collection and cleaning for all data analysis projects.</p><p id="4dc74a4d-f16a-4f87-af2a-8b3a18641df1" class="">Applying data analysis to a new field includes the following steps:</p><h3 id="9857cc50-5fe1-47e4-bac2-8901e762e5d6" class="">A. Gather data</h3><p id="aabd94ac-1e77-45e4-9901-4280b4b7b53f" class="">Governments and researchers focus a lot of their efforts on gathering information. Primarily through surveys and bureaucratic processes, such as taxes and licenses etc. Increasingly such information has been made public. The recent interest in big data and machine learning has largely stemmed from the ability to use knowledge inferred from usage data and digitised information to create large datasets. While some of this information is locked in proprietary databases, there is a growing collection of public information. Whole fields of research have emerged as a result of internet based data and leading business such as Google and Facebook design products specifically so that they can obtain information from their users. Similarly, internet of things devices are becoming pervasive in industry as a tool to sense processes and products and thus enable them to be monitored and analysed using machine learning tools.</p><h3 id="63a463ad-e2a7-444f-981e-619a9a1026db" class="">B. Clean and normalise data, extracting structured information from it</h3><p id="ab2e9f16-3d64-4ec9-83bc-09467400fbda" class="">Most information is messy and even when accurately recorded, most real situations have exceptions to common definitions. Commercially valuable products exist simply to enable people to clean and standardise names, dates, addresses, organisations, products etc. More recently, computer vision, natural language processing and other machine learning tools have developed to the point that valuable information can be inferred from unstructured data such as social media posts, image/video sharing sites, satellite imagery etc.</p><h3 id="deb164e7-67a7-48d7-add0-31acaab4c1eb" class="">C. Combine data sources</h3><p id="15cc9ff0-3f7d-4887-b1dc-cad325ef8565" class="">It is rare that a single source of information is enough to infer useful causal relationships. Therefore much of commercial data analysis and research is focused on linking datasets together. This can be very challenging as there are rarely nice common keys that can be used to link data records. A very powerful technique is to create a formalised simulation of the system being monitored (similar to how a game might formalise a situation). By treating data sets as noisy sensed data produced by the simulation many highly varied datasets can be combined. Similar to automated creativity this requires metrics to identify how well a specific simulation matches sensed data. Optimisation algorithms can then be used to adjust the simulation and produce a more accurate estimate of what is happening. The simulation can then be used to infer causal relationships between parts.</p><p id="c35eb943-c1c8-4658-a80d-a7d1ca75ee1a" class="">Constraint-based data linking is very new. We have run a number of projects in this area and can advise you on how to proceed. If metrics of matches between simulation and data sources can be defined using automatically differentiable functions, such as those created with Pytorch or Tensorflow then powerful optimisation algorithms can be applied to accurately infer the simulation.</p><h3 id="2c72bf3c-9920-4ede-9e5d-0631d3fd830f" class="">D. Identify metrics of success</h3><p id="10b6991b-f3b0-4ae6-8dcc-c0a493781e08" class="">A vitally important and often overlooked area is the process of creating numerical measures of value. Many fields of government, commercial organisations and research are driven by metrics. Poor choices of metrics of value can lead to extremely undesirable outcomes, from institutionalised discrimination to actively undermining valuable outcomes.</p><p id="8336481f-a28c-4b6f-a9eb-fda88fa4c2d9" class="">This is one of the most philosophical and lateral challenges of the module. The best place to start is to study existing metrics for the subject area you are examining and to consider existing criticism of them. It is also useful to take metrics and examine what properties correlate with them and then to explore alternative metrics which may have different correlations. A common mistake is for metrics to be developed based on how people believe situations should be. In particular, to favor those that validate their strengths and undermine their weaknesses. A more powerful method is to analyse real examples and the properties present during obvious failures and clearly successful outcomes.</p><h3 id="e1438305-fd84-4f8f-9cdc-b5855155337c" class="">E. Visualise and group data to provide human understandable insights into underlying structure</h3><p id="c34ab56e-cce2-4d35-8c4f-9bde65aa60be" class="">Simple metrics and statistics can be very misleading, there is great value in tools that display information visually as our optical pattern matching skills are very sophisticated. For example, it has become common within machine learning research to apply dimensionality reduction techniques such as T-SNE to large datasets to gain insight into clusters within it. There are also many valuable insights to be gained from visualising graphs and correlation matrixes showing how properties co-occur to understand their relationships as well as the spread of values they can take. These can reveal potential causal connections and to identify when samples form clusters that could be modeled separately with simpler relationships.</p><h3 id="1ebc3763-2cf5-46ec-aedc-1c1bd666b119" class="">F. Use statistics and machine learning to discover relationships,infer missing data and predict future trends</h3><p id="000b8d0e-fa8c-4ac9-a15d-04b09b344c3f" class="">The most common method for inferring relationships is to use linear correlation (a simple measurement of whether the values of different properties rise or fall in relation to one another). However, machine learning provides more powerful methods that can identify more complex interactions and groupings. For example, deep learning based factor analysis is a powerful method for inferring missing data and underlying relationships. Netflix and other recommendation systems use these factor analysis techniques to predict your preferences based on actions and ratings by other users. The analysis also enables organisations to group products into meaningful categories to help users find what they want. These groupings also enable the company to prioritise the products they invest in. Similarly, there are many powerful libraries for time-series analysis which enable predicting future events. More recently, inverse reinforcement learning techniques have been developed which infer an agent’s objectives, values, or rewards by observing its behaviour. Agents can be people or organisations and through creating these models their behaviour in novel situations can be predicted.</p><h2 id="67b57b11-36d1-405d-9af1-be5d7248fd6f" class="">Fields that could be analysed</h2><p id="dffcc99d-b07c-4001-a953-2e967ad7eb00" class="">i) Economy, work and education</p><p id="7a65c02f-9c12-4262-8aed-16b693603dfd" class="">Could be used to assist with: Government planning, investment recommendations, entrepreneurship opportunities, career planning or education curriculum design</p><p id="cb08d109-92fc-4a16-8727-09a40941c540" class="">ii) Personality, life/product choices, relationships and communities</p><p id="034097ff-a863-4f71-b708-5170e28d0dfd" class="">Could be used to assist with: Marketing, Politics, Activism, Romantic and Platonic relationship recommendations</p><p id="423f2b5c-a9bd-402d-92cc-9c1c5cab5af1" class="">iii) Everyday life, life events, time use, activities, emotional states from actions/life events</p><p id="37d56d09-2d50-4d83-b481-62e57d69e7c0" class="">Could be used to assist with: Identifying new consumer product opportunities, plausible strategies for self improvement, identifying new pastimes/lifestyles, identifying people who would benefit from government or charitable support</p><p id="7f32661a-d2ec-4e4c-836c-7b8efbe01d69" class="">iv) Built environment, buildings, road network, floor-plans, sewage, water, power</p><p id="147a554c-3bc9-45ab-8a56-c191d56ea410" class="">Could be used to assist with: Architecture, city planning, self driving car training data, realistic environments for games</p><p id="46e771e1-f270-48dd-8156-23004a4e1728" class="">v) Health and Medicine</p><p id="a0a6ceab-ce18-43d3-91c7-7e4c901d9718" class="">Could be used to assist with: Personal/Family planning for the future, prioritising government/charity spending, insurance calculations</p><p id="cd5dd882-d7e8-4045-87e9-ceeb0fb56b78" class="">vi) History</p><p id="b469c205-1fd6-41b0-a1a1-bd58182276ff" class="">Could be used to assist with: Feeling connected to the past/community, large scale/long term economic/political trends and similarities</p><p id="12af4c6f-bf1b-4915-8e1a-9d3f75d4a8e3" class="">vii) Academic research groups, publications, datasets, source code, research funding</p><p id="c3a0672c-5acb-4d61-a891-475384422832" class="">Could be used to assist with: Finding useful algorithms/research, learning the structure of academic subjects, identifying trends and communities, identifying interdisciplinary opportunities, academic career guidance</p><p id="8283d5bb-1013-4717-9b17-33967218cc6b" class="">viii) Movies/Books/Comics/Games</p><p id="eb18b108-f8c5-4591-a76c-d029412f7eb3" class="">Could be used to assist with: Making entertainment recommendations, predicting success of products, identifying entertainment product opportunity areas</p><p id="631cc009-e6e5-46a4-a686-062d0ca97b1b" class="">ix) Software, open source communities, public datasets</p><p id="0ff6005b-f5a4-42d4-be1f-5c1176d234cd" class="">Could be used to assist with: Finding potentially useful software and data, understanding what kind of projects gain popularity, identifying entrepreneurial opportunities, making seed/startup investment decisions</p><p id="e8078c1b-c31c-4084-9b92-8f3749db0f92" class="">x) Queens university, lectures, assessments, student issues, administration, income and expenditure, cleaning and maintenance, student leaving destinations, halls of residence/student life</p><p id="cf83cf8d-2e50-44f0-a8ea-ac2ded625f3a" class="">Could be used to assist with: University planning, student pastoral care, helping communicate student experience, improved student outcomes</p></div></article></body></html>

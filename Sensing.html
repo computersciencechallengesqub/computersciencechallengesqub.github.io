@@ -1,0 +1,565 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Sensing</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9e1ceef2-f120-4556-a341-0a88a4af32a2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📷</span></div><h1 class="page-title">Sensing</h1></header><div class="page-body"><p id="99879724-666e-484e-9e4f-0e024bcb1efa" class="">In 2012 a relatively obscure field of machine learning known as deep learning produced dramatically improved performance on one of the most challenging computer vision problems at the time, ImageNet. This technology proved to be a very powerful tool for many AI problems. Every year brings new advances and new applications of this technique, often surpassing the carefully crafted work of experts in specialist fields. Investment in the technology by companies and governments is unprecedented and, since 2012, the computing resources used to train deep learning algorithms has been doubling every 3.5 months. These resources are needed as ever larger training datasets are used and more complex problems tackled.</p><p id="5e7d6730-c848-4e93-8acc-b51e172e4e09" class="">Historically the core of business computing has been the use of databases and user interfaces to digitise the paper based processes that enable an organisation to be managed. This has required many staff to perform data entry tasks to enable systems to track the state of the organisation and record it so it can be analysed. Deep learning based technology makes it possible to use raw digital sensors to automate many of these data entry tasks. This technology has lead to a growth in sensors being placed within objects, often known as the Internet of Things (IoT). This in turn has driven the field of data analysis, which enables the detailed prediction and improvement of organisations from data. The commercial advantages of this approach are sufficiently great that when this process is applied to established industries it can lead to them being replaced by smaller, more technologically sophisticated rivals. Most large organisations are aware of this ‘adapt or die’ narrative and are investing heavily in the technology.</p><p id="aa7b7797-33d9-4243-83bd-a07dceeb4549" class="">Building an automated deep-learning based organisation includes the following steps. Each step includes a list of possible projects you could focus on for this module:</p><h3 id="bb30a524-9307-4be8-bd70-da9865d0cab0" class="">A. Create sensing Infrastructure</h3><p id="251b339f-f435-4fcd-bb81-bee9dfc55bfc" class="">Significant improvements in computer vision have occurred thanks to improved sensing and data collection processes. For example, the state of the art system for identifying and tracking human body and hand pose (openpose) was made possible by a controlled sensing environment with many cameras. More generally, difficult vision problems can often be solved with more and better sensors and controlled lighting.</p><p id="eea2fe19-39d4-4828-8cc4-b4a925c8e006" class="">i) Develop <em>s</em>ensors embedded in objects/locations (New IoT objects e.g. a smart cupboard)</p><p id="d68939c1-d712-42df-ad8a-7dd6855b9705" class="">ii) On sensor deep learning processing (Edge computing e.g. training approximate, low resource versions of more powerful neural networks)</p><p id="0230c952-d6ff-437a-8519-9c8b62fd0129" class=""><del>iii) Low latency, high bandwidth network streaming of sensory data to enable more sophisticated server based processing and training (Low latency network streaming of video from a raspberry pi camera)</del></p><p id="792c6b7a-cf79-4c13-8a4b-4f379bbfbca2" class=""><del>iv) Large scale, high speed, data compression and storage for sensed data (e.g. Real time video transcoding, analysis and indexing to network attached storage)</del></p><p id="d4ae7fad-063e-4a68-82ed-61ce573b81a7" class="">v) Server based pre-trained deep learning algorithms to extract meaning from sensory data (e.g. adapting state of the art academic computer vision source code to work with streaming video)</p><h3 id="bfd2a122-1643-4727-a090-53525bfe1dee" class="">B. Formalise an object/situation to provide a digital double of its state</h3><p id="de0c1009-edf3-4e51-88f4-aad75c72284d" class="">When an object or situation can be turned into a fully digital representation it is possible to extract valuable information and to make planning and prediction operations in a human understandable way. For example, by using deep learning linked sensors to infer the location, speed etc. of vehicles, pedestrians, roads etc. it becomes possible to apply planned programmed operations to achieve complex tasks, such as automatically parking a car. In addition, by having a common simulation representation it is possible to combine multiple estimated properties to create a coherent inferred state, similar to how we combine the inputs of our senses to understand what is happening around us. We can also use the memory of historical events to help predict future actions. Also, if we can generalise a digital representation of a situation, we can imagine plausible states and the sensory signals it might produce. We can use these signals to create synthetic training data. For example, this approach was used at Google to create a state of the art text detection and recognition system, by accurately simulating how printed text could appear when photographed at a distance.</p><p id="52d7319b-4f1b-4c02-ba19-30969ceb64c7" class="">i) Formalisation of an organisation (E.g. creating a game-like representation of a room and it’s use, like the Qlab makerspace). Will include gathering a training dataset to verify the formalisation.</p><p id="62643faf-a280-452a-a2d9-2401ece537c8" class="">ii) Formalisation of a sensed input (E.g. creating a parameterised representation of a document, such as an academic paper or comic). Will include gathering a training dataset to verify the formalisation.</p><h3 id="b36bbbd0-7a76-43d2-b251-30fc109879f1" class="">C. Gather, label and clean training data</h3><p id="97e57859-2f18-4fd3-8528-858dca112963" class="">Deep learning achieved success when it could be trained on large datasets. It became even more powerful when transfer learning could be used. This is where a deep learning system is trained on one task, e.g. the ImageNet problem, and then this network is refined for a specific task. In this way, the network can learn general properties of vision through the large general task and then learn the specific parts of a novel problem.</p><p id="17944154-b556-47d9-b152-b1d5a14ec04c" class="">While there are many powerful pre-trained deep learning algorithms. They all have situations in which they are unreliable. There is therefore a need to use multiple redundant approaches and to combine and adapt their detected information to accurately to sense what is occurring. The best way to combine these different signals is with machine learning. This requires training data specific to the situation that can learn to prioritise which signals are accurate under different circumstances.</p><p id="8a1b8450-b38e-4b36-ae54-cfc22c05cb20" class="">i) Automated gathering of image-based training data (For example through scraping links from google searches and labelling them using a crowdworking platform such as Mechanical Turk)</p><p id="dae068cb-33fc-4740-bf54-abdb8bd65136" class="">ii) Using active learning to prioritise data collection (For example, adapting a library like Modal to prompt users to gather training data similar to a particular problem)</p><p id="dc96ad80-a9bf-4f98-b5a4-3f6a243aca35" class=""><del>iii) Generating plausible synthetic data (For example, scripting blender to produce photorealistic synthetic training samples of an object to be recognised)</del></p><h3 id="fa2af23b-0b9d-40f8-be6b-1673f39aaf72" class="">D. Train deep learning algorithms to infer digital double representations from sensed data</h3><p id="c4810489-ec4d-44fe-97ba-e26d0cce07c5" class="">Initially deep learning applications focused on producing simple categorical label or numerical predictions. More recently, there has been success in using detailed models, for example 3d models of the face and body, and updating them using sensed data.</p><p id="0af04c84-85c3-4ee8-a11f-0d4dd521c8f6" class="">i) Automated design and refinement of deep learning algorithms using AutoML (E.g. formalising Fast.ai models and hyperparameters and using reinforcement learning to optimise the approach for an existing or novel computer vision problem)</p><p id="57870fe7-dfd8-49f1-bed6-e836db2b37e7" class=""><del>ii) Updating a digital double representation. (For example, combining deep learning initialisation with differentiable rendering to infer the vector graphic representation of a cartoon face or font)</del></p><h3 id="3fceff8d-2c7c-4dd2-93e2-de5fa2f1c55a" class="">E. Apply machine learning and visualisation techniques to analyse and predict behaviour</h3><p id="8c5dfa2e-39fa-4fb6-84a0-5520f3e8e6b6" class="">Once an organisation has developed a digital double and has a large collection of real sensory data it can start to analyse and ultimately predict activity within it. Visualisation techniques can also be used to gain insight into why deep learning models are producing inaccurate results under certain circumstances and provide insight into how to improve them.</p><p id="c589dcc0-1321-4d0b-98a2-ce16f4c08ca6" class=""><del>i) Development of tools to analyse and visualise deep learning computer vision models (E.g. creating heatmaps of areas in images that contribute to errors in predictions and using this to help users gather more training data related to this issue)</del></p><h3 id="84831e4a-482a-42a7-9e44-b6aeb5a8ff76" class="">F. Create collaborative/automated applications</h3><p id="96558a91-9d41-434c-b537-f9fe30ea0f6e" class="">If the state of an organisation/room etc. can be tracked in real-time then new collaborative applications become possible. For example, by understanding a situation an AI might anticipate human goals and work with them to achieve them. A simple example of this is Google’s autocomplete and how their search engine adapts using historical searches and browsing history to help identify what you are searching for.</p><p id="6e9dfcd0-824f-40de-b6b2-fc3909a39e2f" class=""><del>i) Use real-time body tracking and face biometric algorithms to infer who is working on what in the makerspace. Develop possible collaborative and organisational tools making use of this information.</del></p></div></article></body></html>

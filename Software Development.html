@@ -1,0 +1,565 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Software Development</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="58b1f8c8-e84c-4372-be78-1a0a8b125fa7" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💾</span></div><h1 class="page-title">Software Development</h1></header><div class="page-body"><p id="958a3583-2ebb-4508-bdc0-27468395f5c4" class="">Commercial software has always been difficult to sell. There are many forces making it difficult to commercialise software products including: widespread piracy, predatory plagiarising rivals, powerful free open source alternatives, companies like Google offering polished free alternatives in exchange for user data. Similarly, the distrust from customers has grown, driven by virus/adware, spyware, predatory monetisation, lock-in, security breaches, usability failures and more. To create a viable software-based business requires addressing all of these issues and more. For the lucky few, particularly those that create stable, subscription based software (Adobe, Microsoft, Oracle, Blizzard), enormous financial success can be obtained. This success is not exclusive to large firms and many software businesses start by providing niche products to companies and communities. Rent-seeking monopolies are often the most profitable business models but they are generally bad for customers. Organisations seek to lock-in users to their applications, operating systems, development platforms, languages etc. so that they can minimise competition, maximise the value of their own knowledge/products and increase incentives for users to pay for features and services. This has lead to an endless churn of developers abandoning bloated unstable frameworks whose lockin undermines the use of modern functionality/techniques. Developers switch to leaner alternatives, directly designed for new technologies, only to see the new alternatives become bloated and unstable in turn.</p><p id="bb21dcf7-0ccb-4e91-a761-6d9d16eceb3d" class="">This poses a challenge for developers wishing to create innovative products of lasting value. Thankfully, because of Turing Completeness, the underlying datastructures and algorithms that make applications function are not fundamentally dependent on any platform. Over the years those that have experienced the limitations of large frameworks have developed lean cross-platform alternatives and minimal libraries to enable powerful, high performance software to be rapidly developed and easily ported to many systems and technologies. As operating systems have become bloated and unstable, more and more application functionality is moving to cloud services that run on rented servers running minimal operating systems and virtualisation frameworks such as Docker. Many applications are now partially or fully cloud based and these carry many advantages in terms of piracy protection, patching and user monitoring/feedback. Modern technology companies tend to create products that span many platforms, particularly web and mobile and have relatively seamless integration. In addition, UI frameworks have tended towards excessive complexity and limited customisation, but with modern html, css and javascript an attractive user interface can be rapidly created and adapted. As with software frameworks, web frameworks (and HTML CSS and javascript) tend towards bloated, hard to debug unstable platforms with lockin. However, alternatives exist and new technologies, such as compiling other languages to javascript (Emscripten) enables high performance innovative web applications with advanced functionality. For example, 3d graphics, VR, AR, deep learning, etc.</p><p id="7768eb99-2f17-4b61-a486-74cff038f870" class="">PC, mobile and web technology, can be developed within many of the challenge areas. However, this area is focused on the creation of libraries, tools and example code to enable others to easily create high quality applications with advanced functionality. It is less about making a specific product and more about making it easier for others to make innovative software.</p><p id="ea997651-4e2c-4bd1-9117-52d735967b5a" class="">Innovation areas for application development:</p><h3 id="94f41380-6b10-4180-8d86-bd7938be556e" class="">A. Cross platform (and platform version/capability), high performance, high functionality software</h3><p id="a741d1c8-2e40-42eb-991b-742d9d376691" class="">i) Cross language LLVM is the common backend for many programming language compilers. More recently LLVM has been used to convert computer code into optimised javascript to create powerful client side web applications. Create a system for producing source code in different languages from LLVM’s internal abstract syntax tree representation (known as IR). Use keyword functions to generate language specific functionality such as windowing systems/ file access etc. (https://stackoverflow.com/questions/19385878/converting-llvm-ir-to-other-language-code). The goal of such a system is to enable the creation of debuggable, understandable libraries that can be used with all popular languages (and to assist with the porting of existing code between languages).</p><p id="353ccfbb-ab4a-4d64-b61a-54e00c6d7067" class="">ii) Native high-quality experiences on each platform Applications that enable the use of features specific to a given platform. For example, always on top windows, dockable/background applications, transparent windows etc. (https://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background). To enable cross platform functionality, people often use scripting or byte code based languages. For high performance applications, such as computer games, it is more common to have a preprocessor create native code and build files for each platform. The preprocessor enables specialist native code to be embedded in the codebase. This also enables the use of platform specific debugging tools. The goal of this project is to make a preprocessor for IOS, Android, Windows and/or Linux that will create compilable projects using popular development tools for each platform e.g. Xcode, Android Studio, Visual Studio, GCC/Make enabling relatively easy native functionality and build tool usage not available on existing frameworks such as Flutter, Java etc.</p><p id="ea985bdb-ccaa-482c-9474-6a4b59a29882" class="">iii) Easy development on novel platforms Take a new platform and create an automated development tool that can be easily installed to enable developers who are learning to program to be able to create executables that run on both a PC and the new platform. For example Smart TV, Voice assistant, smart watch, VR (Oculus Go/Quest/Vive)</p><p id="1dd8084d-ba25-4394-a255-5f056c80141d" class="">iv) Supports a diverse range of input devices and display sizes/configurations, with abstracted interfaces on each platform Create a minimal example application that demonstrates how common game UI components such as 3D movement (of camera and object), menus and text data entry can be abstracted for cross interface software development. By abstracting the interface, have the same application code be able to use many different input platforms. Gamepads, VR controllers, hand trackers, ipad, ipencil, mobile phone, smart watch, smart TV etc. (design how all the interfaces might work but only implement your favourite that you have time to develop)</p><p id="5141dc01-8076-4f65-b590-5c5d490541c5" class="">v) Multi-screen applications - Interface on one platform that can control software on another Such as the Nvidia shield mobile app and Smart TV. Create a minimal example project that others can build on, that uses network communication between programs installed on mulitple devices such that a developer can easily make use of remote screens and interfaces as if they were all on the same device. For example local and remote openGL windows or local and remote HTML ui components.</p><p id="91a029a5-7a47-4ef7-b96b-25b155a02834" class="">vi) Web apps as exes. Use wxwindows, android studio or xcode to create a minimal web browser application (using a webkit based web browser ui element) and a linked virtual machine (java, python or javascript) and an interface between them to enable webserver based web apps to be converted to self contained executables without needing to use a webserver or web browser.</p><p id="4deb6d87-c41e-4d38-b63c-51fc87ed8023" class="">vii) Photoreal virtual world internet interface. Adapt Unreal or Unity as a renderer for internet loaded content with a virtual machine based scripting engine e.g. java or python. So that a virtual world with dynamic content can be created like a web site (3D environment is like the HTML DOM, virtual machine is like javascript, actions in the world trigger new &#x27;pages&#x27; to be loaded). In the case of Unreal we have already made progress adapting it for dynamic loading of virtual assets and control of them in the world via a memory mapped file interface.</p><h3 id="d8887f9d-4540-470d-970d-672feb183d4e" class="">B. Respectful, convenient, polished, powerful software</h3><p id="dba86b8a-44bd-4b45-b495-1d05eed8d312" class="">i) Minimised time to usable state Create a packaging tool, library and example application that can be used to create applications with a large quantity of code and assets that are downloaded, decompressed and installed (and uninstalled if resources are limited) on demand. Ensure the initial application is small, downloads quickly, is self contained (no installation needed), launches virtually instantly, can be interactively used with a fixed size set of compressed assets and code. Will download extra functionality as needed in a background thread, starting with a minimal compressed version and seamlessly loading more functionality and assets as needed. Gracefully rolls back heavyweight code and assets as not needed. Time permitting enable the application to be downloaded and streamed from a local network server.</p><p id="2eb8495f-a070-46fc-bc12-0921f73b5fb3" class="">ii) Intelligent diagnostics and autoconfiguration of common problems</p><p id="d7f92f64-2a8b-407d-b000-b3287f704bde" class="">Create an example application that requires high quality graphics, GPU accelerated computing, access through a firewall or some other form of operating system configuration that is non-trivial for a non-technically skilled user. Create a library or executable to automate the analysis of the host operating system guide and where possible automating the tasks needed of a user in configuring the PC or mobile device for the specialised application. This system should be robust enough to recover from user error. The system should also be data driven and log its operation, taking updates from a remote server so that the installer can be updated as new issues arise. Time permitting the privacy and security issues of this system should also be examined.</p><p id="c01f1edd-b42f-4122-8b4c-fd1ef97ac2ff" class="">iv) Seamless offline and online functionality</p><p id="037ffa7e-ad16-42a2-bbb3-b422f3d61fc3" class="">Create an example of a simple web application, such as a notepad-like text editor, that others can adapt for their own purposes. The application should operate like google docs offline mode. The web application can work locally in a private way, can connect to a local network server or can work with a cloud server. Changes to files should be synced when connectivity to a server is established. File changes should be saved so that undo is possible and changes on multiple platforms can be merged/rolled back. Like a git repository. If needed, create a minimal local executable webserver, or mobile app to enable the application to run on different platforms without network access.</p><p id="d0be134c-5162-4e74-9231-4ffe96fa1627" class="">vii) Glitch free progressive downloading of interface/assets.</p><p id="0b2830a7-1aa8-4219-b870-3c7fe10ae404" class="">Create a development tool and user interface library for simulating and replicating streamed interface experiences on mobile, PC or web. For example, the progressive loading of a large webpage with images. Be able to simulate low and/or unreliable bandwidth. Create a tool to convert an interface, such as an HTML page, into a highly compressed approximate version that has the same layout, colour scheme and interface components so that the page is instantly responsive. Have the library gradually and smoothly transition to the full content as assets become available.</p><p id="ad6a1546-638c-4cee-8adf-b9dae861f072" class="">iv) Always responsive, patched, controlled application</p><p id="f1736b08-4faf-43e1-8428-9cbf1ec31f1f" class="">Create an example wrapper executable and library for an application that monitors the application’s interactivity and resource usage and automatically recovers from crashes, memory leaks, and excessive cpu/gpu usage. This wrapper should also log issues and facilitate patching of the application without explicit restarting. Time permitting the library should support sharing state with the wrapper executable (for example through a memory mapped file) so that the restarted application can continue from where it left off in a relatively seamless way.</p><p id="f1784b96-f730-4168-ae48-b7d1379a862c" class="">vii) Easy cloud processing.</p><p id="8e902241-183c-4bde-82de-ded48b510390" class="">Make it easy for developers to send expensive processing to local or cloud servers for high end functionality on low resource platforms. Create a preprocessor for your code so that functions can be labeled (or if you have time automatically identified using performance measurement) and can be modified so that they can send the function parameters to a server and get it to perform the operation and return the result. The preprocessor should modify the application code and also create the server code so that the application can make use of the server if it is available.</p><h3 id="e19f6d62-8304-418e-950c-bab332612544" class="">C. Patching, debugging, A/B usage testing, Security testing</h3><p id="4a128de5-8a52-4b15-adc9-7a35e37ebb53" class="">i) Logging and playback system</p><p id="691bb041-143d-4ee8-b4e9-289fcc5c52be" class="">Develop a minimal logging system library and example application that gathers diagnostic platform information and records user interactions through the interface. There should be sufficient detail to enable the recreation of the platform and replay the user experience to reproduce and debug any bugs, performance or security issues.</p><p id="af65d4f5-ee74-46d7-921f-72e3ce2b9bee" class=""><del>ii) Cross platform testing, performance and security analysis system</del></p><p id="0e82e255-16a0-4eed-a582-1c51a7a0c070" class=""><del>Develop a system that uses virtual machine/simulators/real hardware to replicate as diverse range of platforms that an application can be run in. Include a method of automating user interactions and gathering diagnostic information from the application. Time permitting explore how existing cyber security tools e.g. fuzzing tools, can be used to identify platform specific vulnerabilities.</del></p><p id="2a0c76aa-01c1-4097-9853-90292d458f5e" class="">iii) Data driven user interface testing after launch</p><p id="12fbd28c-fbeb-4038-b23a-6507c5b46315" class="">Create a library and example application where the interface to a program is data driven and can be updated remotely, so that selected users can have experimental variations in their interface and their interactions can be logged to experimentally validate if the user interface has improved.</p><p id="3fa5644c-d9e7-4490-bafe-6e1b89e59510" class="">iv) Gamified community system for functionality, performance and security testing.</p><p id="5cac3ce3-6f73-4aea-9c41-2afae63a8b2b" class="">Create a system for rewarding internal developers and/or trusted users when they identify reproducible issues. Create a web interface to a sandboxed platform similar to ii) where an application can be simulated and interactions logged (in this case only one platform needs to be created). Develop a gamified community system where users can try to find bugs and security issues and gain rewards for doing so.</p><p id="e1f92553-cd53-4280-8ce4-574cca2b4110" class=""><del>v) Community support integrated with an application</del></p><p id="d5d7697a-4468-4b10-8125-7f2b6589f011" class=""><del>Create a minimal library and example application that enables a user to request functionality or report bugs from the software. Users should be able to receive a custom update and fix within the software and obtain real-time support through chat and remote control/onscreen highlighting within software showing them how to achieve their desired tasks. Time permitting, this system could include a data driven, remotely updatable help and tutorial system that can be adapted based on support queries and even personalised to users.</del></p><h3 id="aee97926-7ad0-4748-99d9-844cbfbc27bd" class="">D. User’s content management</h3><p id="405320df-963b-4fae-8055-cc25a079540f" class="">i) Source control functionality for users content</p><p id="08244969-eeea-407c-bfe1-e4609ff9d77e" class="">Create a minimal library and example application (e.g. a text editor) for source control style functionality for user created information – Depending on time develop: Networked data backup, endless undo, data versioning, data merging, multi-user distributed real-time editing and/or seamless background saving of file changes (similar to Google docs)</p><p id="8a1a0071-c202-4d2b-a1ee-65dee168c839" class=""><del>ii) Blockchain for trustworthy distributed community content</del></p><p id="ece782f9-2809-4394-ae33-57d4b436f455" class=""><del>Create a minimal library and example application so that users content can be shared, changed and validated through a blockchain system.</del></p><p id="6725c9f8-e029-43cb-8c17-2b79f8dcf1e8" class="">iii) Large files</p><p id="818f2665-e635-4a7c-a1d8-e9b673e91e8a" class="">Create a minimal library and example application (e.g. text editor) that can Load and edit large files. It should be able to load from parts of a file and construct a cached index so that parts can be accessed quickly on demand. The system should maintains a record of changes to a file to provide a responsive local version that can continue to be edited with having to update the file, this ‘delta’ should be able to be saved to disk and correctly update the index so that the changed file can be viewed efficiently even when changed. Time permitting the system should also manage background updating of the large file so that deltas are progressively applied without slowing performance.</p><p id="4d01bd08-4cc8-4ec4-a614-e91978f13d17" class="">iv) Access to files through many platforms e.g. FTP, Network drive (SMB), Google drive etc. (including streaming/partial load on demand)</p><p id="6ea86680-4c0a-490b-9998-d86cf738e6a7" class="">Create a minimal library and example application that enables file read and write access across a range of interfaces. Time permitting create a local cache of the remote file system and local files/thumbnails for rapid file interactions.</p><h3 id="07c02878-7843-43f9-b90a-e5f59a2f922d" class="">E. Content Community</h3><p id="0e7499a1-6863-4f37-a6a9-a1acd9907f7a" class="">i) Integrated social media posting of content. Create a minimal library and example application that makes it easy for users of an application to post their content to social media platforms. Have the social media post link navigate to a server where the application can be downloaded and/or if the application is installed have the file be registered with the browser so the viewing application is launched when curious users click on the link.</p><p id="07780ae8-822b-4a6b-8e89-228bf7e57838" class="">ii) Seamless, optional, integration of user content with semantic web knowledge. Create a library and example application (e.g. text editor on web, mobile or pc) that identifies references within users content to locations, organisations, people, entertainment etc. and automatically cross references them with external information e.g. data from wikidata.</p><p id="e47ef1ae-d199-4807-868f-9ff47a8c5e8a" class="">iii) Seamless optional integration of public data for content suggestions. Create a library and example application (e.g. text editor or paint program on web, mobile or pc) that finds similar free content to what the user is producing as they work (not necessarily created within the platform e.g. public domain images/text/code/3d models etc.)</p><p id="d434bd2d-79ac-46da-a719-8c8ca5dd7282" class="">iv) Financial platform for funding/rewarding community content Create a library and example application (e.g. text editor, paint program etc. on web, mobile or pc) which can enable some of the following: Support of users who create shareable content – patreon, reddit coins. Commission and reputation system so that users can pay other users for content - fiverrr. Community fundraising for improved functionality/content – kickstarter, gofundme. Crowdworking infrastructure – integration with crowdworking platforms to enable users to pay for custom content from external workers – Mechanical Turk.</p><p id="cbafac55-4538-4eda-bdc6-46509e7949cf" class="">v) Recommendation system for content Create a library and example application that enables users to easily tag and curate indexes of content (like Flikr, IMDB lists, wikipedia). Time permitting enable the user to create logical rules (For example: only with this tag or from this user or recommended by this user) or train recommendation models using their preferences</p><h3 id="35b2a9e0-73db-4cc3-84fa-8c164d63ee23" class="">F. Application Customisation</h3><p id="6d95c850-1d27-424f-8e9a-417a2c5935bb" class="">i) Easy framework for user modding</p><p id="b2185fe8-0be5-41b0-86b2-ef42871ead46" class="">Create a library and example application that provides a Sandboxed, resource managed scripting functionality using a widely used language (e.g. python). Time permitting create development tools for debugging while the application is running. Also explore how mods can be developed outside of the application using standard tools (Similar to Chrome/firefox support for javascript, Blender customisation with Python). Ideally include many scriptable hooks – ui/menu button, smart content highlighting/response to user events, main loop background scripts for advanced interactivity. Create the system with minimal core data/functionality where the main ui and functionality is delivered through scripting, ensuring parity of performance between user and developer created functionality – (Similar to Blender, VSCode)</p><p id="3e018cdf-ab00-472a-8022-0fe7d2ac2f5e" class="">ii) Visual scripting for non-programming users</p><p id="85d3d9c5-f0f1-4d85-a02c-98f1259066c4" class="">Create a library and example application (e.g. text editor) that enables non-technical user to develop modifications in a visual scripting language that generates functionality in a widely used programming langauge (e.g. python)(https://github.com/wonderworks-software/PyFlow)</p><p id="fa711401-35f0-48fc-ad51-ae7ca2fbaa44" class="">iii) Automatable applications</p><p id="c08523be-4dbc-451e-8215-7770860651db" class="">Create a minimal library and example application that can be automated with scripts. Ensure that the application can run without an interface as a commandline scripted program (similar to Blender). Also have the application include a minimal embedded webserver which provides a restful api interface so that the application can be controlled remotely via a web interface or api calls. Time permitting explore how the application could have always on functionality. An application that runs in the background and is launched on startup. This project requires considering and discussing how security issues might arise and be addressed for this application.</p><p id="e6284f84-6102-413d-9718-ca2d816bffd1" class="">iv) Personalisation/branding of applications</p><p id="617996a5-0c66-48d5-a344-baa42ce281e0" class="">Create a minimal library and example application (e.g. text editor or music player) where the appearance/branding of the application can be easily changed at runtime by users. Include a web based community where users can share their personalised interfaces (Similar to Winamp)</p><p id="78eb6ac8-68eb-4da1-b165-9138cc798487" class="">v) Wrapping of commercial software/websites to automate/enhance functionality</p><p id="38adaeb7-59f0-42c3-a61a-053b82eaaa69" class="">Create a tool to enable existing creative software such as Photoshop, Marvelous Designer etc. to be scripted and remotely automated via a web interface. Time permitting you could explore how a user could remotely operate the software via a web interface. For example, to enable crowdworkers to use blender remotely.</p><h3 id="f6d706e0-6699-45b0-b1cc-49bb70490853" class="">G. Sales funnel/customer relationship/experience management</h3><p id="e842ae1a-5837-4d43-b873-a7dd9d3798bc" class="">i) Reputation management system</p><p id="ca19e579-3e17-4f77-8ecf-da7e282b8f45" class="">Create libraries and tools to record and visualise users interactions with a service to help improve products, manage support, market products and minimise piracy. These tools could include: Tracking references to software and rival/related products in social media. Inferring and tracking identity of unregistered users to personalise experience for curious unregistered users prior to install (e.g. with browser/desktop fingerprinting). Privacy managed, tracking of a customers usage of a service across applications, platforms, support websites, alerts viewed, emails received/viewed, social media interactions relating to the product. This project requires considering and discussing how data protection issues might arise and be addressed for this application.</p><p id="50aa1438-424e-4dc7-8c55-3dc009b72667" class="">ii) Predicting and supporting user actions</p><p id="621dc4ab-ebb1-49c9-b67b-22f17869ef96" class="">Create a library for logging and using machine learning to predict user actions within a simple application (e.g. a set of forms for data entry). The system should provide a set of sensible defaults or autocomplete options based on past usage (Similar to Chrome autofill). Time permitting explore how the system could enable developers to view anonymised usage information and create larger/better suggestions by aggregating data from multiple users. This project requires considering and discussing how data protection issues might arise and be addressed for this application.</p><h3 id="5763692a-6932-497b-8e28-87ebec2c537b" class="">H. Monetisation</h3><p id="3c67abbd-40d8-4c6b-891a-c82ad3dd7cc4" class="">i) Monetisation functionality not tied to a development framework</p><p id="c05625e8-714c-4754-ab22-98ae4fc93597" class="">Create one or more minimal libraries that enable the use of monetisation methods within applications without requiring any existing large frameworks e.g. Flutter. Monetisation could include: Ad integration. Pay to unlock functionality including integration with app store payment/external payment provider. Virtual currency system for inapp purchases. User created content marketplace – sketchfab. Community tools – private servers, giving gold to users you like, pay for cosmetic personalisation (Roblox). This project requires considering and discussing how security issues might arise and be addressed for this application.</p><p id="d7371743-5315-451a-8363-a51de44e62c5" class="">ii) Commercially useful side-effect applications (Custom Captchas)</p><p id="bfb320d1-5f6c-4248-98b9-c3ee56c33f67" class="">Create a library that enables an application to support commercially valuable work as the application is used. For example, obtaining mechanical turk style tasks as an alternative to captchas or adverts for free applications. This project requires considering and discussing how security and privacy issues might arise and be addressed for this application.</p><p id="f9406827-0dbd-46c8-880c-3d847918c572" class="">iii) Commercially useful side-effect applications (Space cycles)</p><p id="1a6c6e2e-cef0-4256-97f3-ae07d20ecbb2" class="">Create a library that enables an application to support commercially valuable work as the application is used. For example the application could perform background machine learning training or cryptocurrency mining as an alternative to paying for the application or having embedded adverts. This project requires considering and discussing how security and privacy issues might arise and be addressed for this application.</p></div></article></body></html>
